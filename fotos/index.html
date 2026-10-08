@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Nossa História ❤️</title>
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --bg-color: #fff0f3;
+            --text-color: #590d22;
+            --card-bg: #ffffff;
+            --line-x: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0 16px calc(40px + env(safe-area-inset-bottom));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            padding: 36px 8px 12px;
+            max-width: 420px;
+        }
+
+        h1 {
+            font-size: clamp(1.7rem, 7vw, 2.2rem);
+            margin: 0 0 8px;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .counter-container {
+            background: var(--primary-color);
+            color: white;
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            margin: 8px 0 24px;
+            text-align: center;
+            width: 100%;
+            max-width: 420px;
+            line-height: 1.35;
+        }
+
+        .spotify-container {
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 16px;
+        }
+
+        .spotify-container iframe {
+            display: block;
+            border: 0;
+        }
+
+        .spotify-hint {
+            margin: 0 0 28px;
+            font-size: 0.85rem;
+            text-align: center;
+            max-width: 420px;
+            opacity: 0.8;
+        }
+
+        .timeline {
+            position: relative;
+            width: 100%;
+            max-width: 420px;
+            margin: 0 auto;
+            padding: 8px 0 24px;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: var(--line-x);
+            margin-left: 0;
+            border-radius: 2px;
+        }
+
+        .container {
+            padding: 0 0 28px 52px;
+            position: relative;
+            width: 100%;
+            left: auto;
+            box-sizing: border-box;
+        }
+
+        .container::after {
+            content: '❤️';
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            left: 9px;
+            right: auto;
+            background-color: var(--bg-color);
+            border: 3px solid var(--primary-color);
+            top: 18px;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .content {
+            padding: 12px;
+            background-color: var(--card-bg);
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 0 4px 18px rgba(89, 13, 34, 0.08);
+        }
+
+        .content img {
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            object-position: center 18%;
+            aspect-ratio: 4 / 5;
+            display: block;
+            background: #f7d6de;
+        }
+
+        .content h2 {
+            margin: 0;
+            font-size: 1.05rem;
+            text-align: center;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--primary-color);
+        }
+
+        .content p {
+            margin: 6px 0 0;
+            font-size: 0.92rem;
+            text-align: center;
+            font-weight: 500;
+            line-height: 1.4;
+            padding: 0 4px 2px;
+        }
+
+        @media screen and (min-width: 720px) {
+            body {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .timeline {
+                max-width: 640px;
+            }
+
+            .timeline::after {
+                left: 50%;
+                margin-left: -2px;
+            }
+
+            .container {
+                width: 50%;
+                padding: 8px 36px 32px;
+            }
+
+            .left {
+                left: 0;
+                padding-left: 12px;
+                padding-right: 36px;
+            }
+
+            .right {
+                left: 50%;
+                padding-left: 36px;
+                padding-right: 12px;
+            }
+
+            .container::after {
+                left: auto;
+                right: -16px;
+            }
+
+            .right::after {
+                right: auto;
+                left: -16px;
+            }
+
+            .content img {
+                aspect-ratio: 4 / 5;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Feliz 8 Meses!</h1>
+        <p>Cada segundo com você é especial.</p>
+    </header>
+
+    <div class="counter-container" id="timer">
+        Carregando nosso tempo...
+    </div>
+
+    <div class="spotify-container">
+        <iframe
+            id="playlist-player"
+            data-testid="embed-iframe"
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/1Vfcoy8nbsybh5WYuzbuI2?utm_source=generator"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+            title="Nossa playlist"
+        ></iframe>
+    </div>
+    <p class="spotify-hint">Toque em play: a playlist começa com <strong>Mirrors</strong> — Justin Timberlake.</p>
+
+    <div class="timeline">
+        <div class="container left">
+            <div class="content">
+                <img src="fotos/02-viagem-e-pedido.jpg" alt="Viagem juntos e o pedido">
+                <h2>Viagem juntos e o pedido ✈️</h2>
+                <p>Entre girassóis, a viagem que marcou o nosso “sim”.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="fotos/03-jantar-caseiro.jpg" alt="Jantar caseiro no segundo mês">
+                <h2>Jantar caseiro no segundo mês 🍷</h2>
+                <p>Mesa reservada, flores e um jantar só nosso.</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <img src="fotos/04-terceiro-mes.jpg" alt="Terceiro mês juntos">
+                <h2>Terceiro mês juntos ❤️</h2>
+                <p>Três meses de história, um do lado do outro.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="fotos/05-comida-italiana.jpg" alt="Saindo juntos para comida italiana">
+                <h2>Saindo juntos: comida italiana 🍝</h2>
+                <p>Uma noite fora, comendo italiano e aproveitando a gente.</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <img src="fotos/06-casamento-amigos.jpg" alt="Prestigiando o casamento de amigos">
+                <h2>Prestigiando o casamento de amigos 💒</h2>
+                <p>Vestidos para a festa, celebrando o amor de quem a gente ama.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="fotos/07-passando-tempo.jpg" alt="Passando tempo juntos">
+                <h2>Passando tempo juntos 😂</h2>
+                <p>O melhor plano: estar perto e rir sem motivo.</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <img src="fotos/08-rodizio-pizza.jpg" alt="Noite de rodízio de pizza">
+                <h2>Noite de rodízio de pizza 🍕</h2>
+                <p>Pizza, conversa e mais uma noite boa a dois.</p>
+            </div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="fotos/09-servindo-juntos.jpg" alt="Servindo juntos">
+                <h2>Servindo juntos 🙏</h2>
+                <p>Lado a lado também na hora de servir.</p>
+            </div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <img src="fotos/10-culto-de-casais.jpg" alt="Culto de casais">
+                <h2>Culto de casais ✨</h2>
+                <p>De mãos dadas, cultuando juntos como um só.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const startDate = new Date('2026-02-08T00:00:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const difference = now - startDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / 1000 / 60) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            document.getElementById('timer').innerHTML =
+                `${days} dias, ${hours}h, ${minutes}m e ${seconds}s`;
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
